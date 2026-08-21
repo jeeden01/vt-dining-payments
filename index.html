@@ -284,9 +284,12 @@
   </div>
 
   <script>
-    // Toggle expandable cards
+// Toggle expandable cards for both desktop mouse clicks and mobile taps
     document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (e) => {
+        // Prevent toggle if user is trying to highlight/select text
+        if (window.getSelection().toString().length > 0) return;
+        
         card.classList.toggle('open');
       });
     });
