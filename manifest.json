@@ -1,13 +1,14 @@
 {
   "name": "VT Dining & Spending Assistant",
   "short_name": "VT Dining",
+  "description": "Interactive pocket guide for Virginia Tech dining hall payments, meal swaps, and flex accounts.",
   "start_url": "https://jeeden01.github.io/vt-dining-payments/",
   "display": "standalone",
   "background_color": "#861F41",
   "theme_color": "#861F41",
   "icons": [
     {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Virginia_Tech_Hokies_logo.svg/512px-Virginia_Tech_Hokies_logo.svg.png",
+      "src": "https://raw.githubusercontent.com/jeeden01/vt-dining-payments/main/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -19,14 +20,26 @@
       "short_name": "Swaps",
       "description": "Check daily meal swap venues",
       "url": "https://jeeden01.github.io/vt-dining-payments/?cat=swaps",
-      "icons": [{ "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Virginia_Tech_Hokies_logo.svg/512px-Virginia_Tech_Hokies_logo.svg.png", "sizes": "512x512" }]
+      "icons": [
+        {
+          "src": "https://raw.githubusercontent.com/jeeden01/vt-dining-payments/main/icon-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Dining Dollars",
       "short_name": "Flex $",
       "description": "Check West End and Deet's options",
       "url": "https://jeeden01.github.io/vt-dining-payments/?cat=dollars",
-      "icons": [{ "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Virginia_Tech_Hokies_logo.svg/512px-Virginia_Tech_Hokies_logo.svg.png", "sizes": "512x512" }]
+      "icons": [
+        {
+          "src": "https://raw.githubusercontent.com/jeeden01/vt-dining-payments/main/icon-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
