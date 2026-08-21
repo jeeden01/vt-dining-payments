@@ -3,322 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VT Dining & Spending Master App</title>
+  <title>VT Dining & Spending Guide</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#861F41">
   <style>
     :root {
-      --maroon: #861F41;
-      --orange: #E5751F;
-      --bg: #F8F9FA;
+      --vt-maroon: #861F41;
+      --vt-orange: #E5751F;
+      --vt-bg: #F8F9FA;
+      --text-dark: #2B2B2B;
       --card-bg: #FFFFFF;
-      --text: #222222;
     }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 12px;
-      padding-bottom: 40px;
-    }
-    header {
-      background-color: var(--maroon);
-      color: white;
-      padding: 14px 16px;
-      border-radius: 10px;
-      border-bottom: 4px solid var(--orange);
-      margin-bottom: 12px;
-    }
-    h1 { margin: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    p.sub { margin: 3px 0 0 0; font-size: 0.8rem; color: #ffc799; }
-    
-    /* Search & Filter Bar */
-    .search-box {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 0.95rem;
+
+    * {
       box-sizing: border-box;
-      margin-bottom: 10px;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    .filter-scroll {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
+    body {
+      background-color: var(--vt-bg);
+      color: var(--text-dark);
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
     }
-    .filter-btn {
-      background: #e0e0e0;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 16px;
-      font-size: 0.78rem;
-      font-weight: bold;
-      white-space: nowrap;
-      cursor: pointer;
-      color: #444;
-    }
-    .filter-btn.active {
-      background: var(--maroon);
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 16px;
+      background-color: var(--vt-maroon);
       color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      border-radius: 8px;
+    header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .info-banner {
+      background-color: #FFF3CD;
+      border: 1px solid #FFEEBA;
+      color: #856404;
       padding: 12px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      border-left: 5px solid var(--maroon);
-      cursor: pointer;
-    }
-    .card.unlimited { border-left-color: var(--orange); }
-    .card.swaps { border-left-color: var(--maroon); }
-    .card.dollars { border-left-color: #2E7D32; }
-    .card.delivery { border-left-color: #1565C0; }
-    .card.passport { border-left-color: #7B1FA2; }
-
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: bold;
-      padding: 2px 6px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .tag-unlimited { background: #FFF3E0; color: var(--orange); }
-    .tag-swaps { background: #F8E8EC; color: var(--maroon); }
-    .tag-dollars { background: #E8F5E9; color: #2E7D32; }
-    .tag-delivery { background: #E3F2FD; color: #1565C0; }
-    .tag-passport { background: #F3E5F5; color: #7B1FA2; }
-
-    .card-title { font-size: 0.95rem; font-weight: bold; }
-    .card-summary { font-size: 0.82rem; color: #555; margin-top: 4px; line-height: 1.3; }
-    
-    .card-details {
-      display: none;
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px dashed #ddd;
-      font-size: 0.82rem;
-      color: #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
       line-height: 1.4;
     }
-    .card.open .card-details { display: block; }
-    
-    .action-box {
-      background: #f0f4f8;
-      padding: 8px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: #111;
-      margin-top: 6px;
+
+    .filter-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 8px;
     }
 
-    .pro-tips {
-      background: #fff8e1;
-      border: 1px solid #ffe082;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 0.8rem;
-      margin-top: 14px;
+    .filter-btn {
+      background-color: #E9ECEF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
     }
-    .pro-tips title { font-weight: bold; color: #b78103; margin-bottom: 4px; }
+
+    .filter-btn.active {
+      background-color: var(--vt-orange);
+      color: white;
+    }
+
+    .venue-card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-left: 5px solid var(--vt-maroon);
+    }
+
+    .venue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .venue-name {
+      font-size: 1.1rem;
+      font-weight:bold;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .badge-flex {
+      background-color: #D1E7DD;
+      color: #0F5132;
+    }
+
+    .badge-dd {
+      background-color: #CFE2FF;
+      color: #084298;
+    }
+
+    .badge-swap {
+      background-color: #F8D7DA;
+      color: #842029;
+    }
+
+    .venue-details {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-style: italic;
+      color: #777;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>VT Dining Assistant</h1>
-    <p class="sub">Dining and Spending Interactive Guide</p>
+    <h1>VT Dining Guide</h1>
+    <p>Flex Plans, Dining Dollars & Meal Swaps</p>
   </header>
 
-  <input type="text" id="searchInput" class="search-box" placeholder="Search dining hall, food, or payment type..." onkeyup="filterDining()">
-
-  <div class="filter-scroll">
-    <button class="filter-btn active" onclick="filterCategory('all', this)">All Venues</button>
-    <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited Halls</button>
-    <button class="filter-btn" onclick="filterCategory('swaps', this)">Meal Swaps</button>
-    <button class="filter-btn" onclick="filterCategory('dollars', this)">Dining Dollars</button>
-    <button class="filter-btn" onclick="filterCategory('delivery', this)">Grubhub+</button>
-    <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport</button>
+  <div class="info-banner">
+    <strong>💡 Meal Swap Rules:</strong> You can use a maximum of <strong>2 meal swaps per week</strong>. Dining Dollars and Flex Plans are accepted at all participating locations.
   </div>
 
-  <div id="diningList">
-
-    <!-- D2 & Owens -->
-    <div class="card unlimited" data-category="unlimited" data-keywords="d2 owens dietrick main hall unlimited buffet entry portal reset swipe">
-      <span class="tag tag-unlimited">Unlimited Meal Plan</span>
-      <div class="card-title">D2 & Owens Main Food Court</div>
-      <div class="card-summary">Tap for entry rules, reset counter info, and locations.</div>
-      <div class="card-details">
-        <strong>Overview:</strong> Primary plan offering unlimited entry to main dining halls. Includes Dining Dollars. Portal counter auto-resets ("13"). Never runs out.<br><br>
-        <strong>Locations Included:</strong>
-        <ul>
-          <li><strong>D2:</strong> Upper Dietrick (8 international live-action stations)</li>
-          <li><strong>Owens Food Court:</strong> Main Hall hall seating & lines</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Swipe Hokie Passport ID at the door. (Credit Card backup ~$13–$18)</div>
-      </div>
-    </div>
-
-    <!-- Hitt Hall / Perry Place -->
-    <div class="card swaps" data-category="swaps" data-keywords="hitt hall perry place taqueria bbq asian meal swap combo exchange grubhub">
-      <span class="tag tag-swaps">Meal Swaps (Max 2/Day)</span>
-      <div class="card-title">Hitt Hall (Perry Place)</div>
-      <div class="card-summary">Tap to view available stations and swap rules.</div>
-      <div class="card-details">
-        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/day across campus. 1 Swap = Entree + Side + Drink. Perfect grab-and-go.<br><br>
-        <strong>Venues Included:</strong>
-        <ul>
-          <li>Smokehouse BBQ</li>
-          <li>Street Taqueria</li>
-          <li>Asian Noodle & Rice Bar</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Select "Meal Swap" in Grubhub App or kiosk. (Credit Card backup if daily limit hit)</div>
-      </div>
-    </div>
-
-    <!-- Turner Place -->
-    <div class="card swaps" data-category="swaps" data-keywords="turner place qdoba chick-fil-a jamba brueggers meal swap combo exchange">
-      <span class="tag tag-swaps">Meal Swaps (Max 2/Day)</span>
-      <div class="card-title">Turner Place (Academic Side)</div>
-      <div class="card-summary">Tap for Qdoba, Chick-fil-A, and Jamba options.</div>
-      <div class="card-details">
-        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/day. 1 Swap = Entree + Side + Drink.<br><br>
-        <strong>Venues Included:</strong>
-        <ul>
-          <li>Qdoba Mexican Grill</li>
-          <li>Chick-fil-A</li>
-          <li>Jamba Juice</li>
-          <li>Bruegger’s Bagels</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Select "Meal Swap" in Grubhub App or kiosk.</div>
-      </div>
-    </div>
-
-    <!-- DX & Hokie Grill (Moved to Dining Dollars) -->
-    <div class="card dollars" data-category="dollars" data-keywords="dx dietrick lower late night hokie grill owens annex pizza burgers tenders dining dollars flex discount">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">DX (Dietrick Lower) & Hokie Grill</div>
-      <div class="card-summary">Tap for late-night burgers, tenders, and pizza options.</div>
-      <div class="card-details">
-        <strong>Details:</strong>
-        <ul>
-          <li><strong>DX:</strong> Late-night burgers, chicken tenders, and quick options.</li>
-          <li><strong>Hokie Grill:</strong> Owens Annex featuring CFA, BBQ, and Pizza options.</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID (saves tax!).</div>
-      </div>
-    </div>
-
-    <!-- West End Market -->
-    <div class="card dollars" data-category="dollars" data-keywords="west end market steaks lobster pasta bistro flex dining dollars discount">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">West End Market</div>
-      <div class="card-summary">Tap for steaks, lobster, pasta bistro details, and savings info.</div>
-      <div class="card-details">
-        <strong>Details:</strong> Premium custom dishes cooked to order (steaks, lobster, pasta bistro). Included Flex gives an <strong>automatic tax-free discount</strong> at the register.<br><br>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID. (Credit Card backup when Dining Dollars balance runs out)</div>
-      </div>
-    </div>
-
-    <!-- Deet's & Xpress Lane -->
-    <div class="card dollars" data-category="dollars" data-keywords="deets place coffee ice cream bakery cafe xpress lane market snack dining dollars flex">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">Deet's Place & Xpress Lane Market</div>
-      <div class="card-summary">Tap for coffee, bakery, ice cream, and market details.</div>
-      <div class="card-details">
-        <strong>Details:</strong>
-        <ul>
-          <li><strong>Deet's Place:</strong> Specialty espresso, house-made ice cream, and fresh bakery items.</li>
-          <li><strong>Xpress Lane:</strong> Grab-and-go convenience snacks in Dietrick.</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" (saves tax!).</div>
-      </div>
-    </div>
-
-    <!-- Grubhub+ Off-Campus -->
-    <div class="card delivery" data-category="delivery" data-keywords="grubhub off campus delivery taco bell pks 7-eleven dorm delivery credit card free delivery">
-      <span class="tag tag-delivery">Grubhub+ Off-Campus</span>
-      <div class="card-title">Off-Campus Dorm Delivery</div>
-      <div class="card-summary">Tap for off-campus food delivery rules and perks.</div>
-      <div class="card-details">
-        <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on off-campus delivery directly to dorms).<br><br>
-        <strong>Blacksburg Spots:</strong> Taco Bell, PK's, 7-Eleven, etc.<br>
-        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps & Dining Dollars DO NOT work off-campus!)</div>
-      </div>
-    </div>
-
-    <!-- Hokie Passport Account -->
-    <div class="card passport" data-category="passport" data-keywords="hokie passport account laundry library printing vending bookstore debit rollover">
-      <span class="tag tag-passport">Hokie Passport Account</span>
-      <div class="card-title">Laundry, Printing & Non-Dining</div>
-      <div class="card-summary">Tap for laundry, printing, and bookstore spending rules.</div>
-      <div class="card-details">
-        <strong>Details:</strong> Separate debit account that rolls over semester-to-semester. Covers all non-dining campus needs.<br><br>
-        <strong>Where to Use:</strong>
-        <ul>
-          <li>Dorm washers and dryers (or Speed Queen App)</li>
-          <li>Newman Library printers</li>
-          <li>Campus vending machines & University Bookstore</li>
-        </ul>
-        <div class="action-box">👉 How to Pay: Swipe Hokie Passport ID card or tap in app.</div>
-      </div>
-    </div>
-
+  <div class="filter-container">
+    <button class="filter-btn active" onclick="filterVenues('all')">All Locations</button>
+    <button class="filter-btn" onclick="filterVenues('swap')">Meal Swaps (Max 2/wk)</button>
+    <button class="filter-btn" onclick="filterVenues('dd')">Dining Dollars</button>
   </div>
 
-  <div class="pro-tips">
-    <div style="font-weight:bold; color:#b78103; margin-bottom:4px;">💡 ESSENTIAL PRO-TIPS</div>
-    <ul>
-      <li><strong>Grubhub Setup:</strong> Go to <em>Account ➔ Campus Dining ➔ Virginia Tech</em>. Log in and link Hokie Passport + Credit Card.</li>
-      <li><strong>Track Dining Dollar Balance:</strong> West End & Deet's only take Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
-      <li><strong>Cashless Fallback:</strong> If a register terminal goes offline, place your order for pickup through the <strong>Grubhub app</strong>!</li>
-    </ul>
+  <div id="venue-list">
+    <!-- Venues populated by filter logic or static list below -->
+    <div class="venue-card" data-category="dd">
+      <div class="venue-header">
+        <span class="venue-name">Dietrick Express (DX)</span>
+        <span class="badge badge-dd">Dining Dollars</span>
+      </div>
+      <div class="venue-details">
+        <p>Accepts Dining Dollars and Flex Plans.</p>
+        <p class="note">Note: Meal swaps are limited to 2 per week across eligible locations.</p>
+      </div>
+    </div>
+
+    <div class="venue-card" data-category="dd">
+      <div class="venue-header">
+        <span class="venue-name">Hokie Grill</span>
+        <span class="badge badge-dd">Dining Dollars</span>
+      </div>
+      <div class="venue-details">
+        <p>Accepts Dining Dollars and Flex Plans.</p>
+      </div>
+    </div>
+
+    <div class="venue-card" data-category="swap">
+      <div class="venue-header">
+        <span class="venue-name">Select Grab-and-Go Locations</span>
+        <span class="badge badge-swap">Meal Swap (2/wk)</span>
+      </div>
+      <div class="venue-details">
+        <p>Eligible for meal swap redemption.</p>
+        <p class="note">Weekly limit: 2 swaps per week max.</p>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Toggle expandable cards for both desktop mouse clicks and mobile taps
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        // Prevent toggle if user is trying to highlight/select text
-        if (window.getSelection().toString().length > 0) return;
-        
-        card.classList.toggle('open');
-      });
-    });
+    function filterVenues(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
 
-    // Category Filter Buttons
-    function filterCategory(cat, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      document.querySelectorAll('.card').forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+      const cards = document.querySelectorAll('.venue-card');
+      cards.forEach(card => {
+        if (category === 'all') {
           card.style.display = 'block';
         } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // Search Bar Filter
-    function filterDining() {
-      let input = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('.card').forEach(card => {
-        let keywords = card.getAttribute('data-keywords');
-        if (keywords.toLowerCase().includes(input)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
+          const cardCategory = card.getAttribute('data-category');
+          if (cardCategory === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
         }
       });
     }
