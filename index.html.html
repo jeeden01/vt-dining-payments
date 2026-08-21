@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VT Dining Guide</title>
+  <style>
+    :root {
+      --maroon: #861F41;
+      --orange: #E5751F;
+      --bg: #F4F4F6;
+      --card-bg: #FFFFFF;
+      --text: #222222;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 16px;
+      padding-bottom: 80px;
+    }
+    header {
+      background-color: var(--maroon);
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      border-bottom: 4px solid var(--orange);
+      margin-bottom: 16px;
+    }
+    h1 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
+    p.sub { margin: 4px 0 0 0; font-size: 0.85rem; opacity: 0.9; }
+    
+    .search-box {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--maroon);
+    }
+    .card.swap { border-left-color: var(--maroon); }
+    .card.dollars { border-left-color: #2E7D32; }
+    .card.entry { border-left-color: var(--orange); }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .tag-swap { background: #F8E8EC; color: var(--maroon); }
+    .tag-dollars { background: #E8F5E9; color: #2E7D32; }
+    .tag-entry { background: #FFF3E0; color: var(--orange); }
+
+    .card-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
+    .card-detail { font-size: 0.88rem; color: #555; line-height: 1.3; }
+    .action-step { font-weight: bold; color: var(--text); margin-top: 6px; }
+
+    .tip-box {
+      background: #FFF8E1;
+      border: 1px solid #FFE082;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>VT Dining Assistant</h1>
+    <p class="sub">Izzy's Instant Pocket Decision Guide</p>
+  </header>
+
+  <input type="text" id="searchInput" class="search-box" placeholder="Where are you eating? (e.g. Hitt, Deet's, DX)..." onkeyup="filterDining()">
+
+  <div id="diningList">
+    <div class="card entry" data-keywords="d2 owens dining hall unlimited buffet swipe">
+      <span class="tag tag-entry">Unlimited Plan</span>
+      <div class="card-title">D2 & Owens Main Hall</div>
+      <div class="card-detail">All-you-care-to-eat dining hall entry.</div>
+      <div class="action-step">👉 Action: Swipe Hokie Passport ID at the door.</div>
+    </div>
+
+    <div class="card swap" data-keywords="hitt hall perry place taqueria bbq asian meal swap grubhub">
+      <span class="tag tag-swap">Meal Swap (Max 2/day)</span>
+      <div class="card-title">Hitt Hall (Perry Place)</div>
+      <div class="card-detail">Includes Taqueria, Asian, and Smokehouse combos.</div>
+      <div class="action-step">👉 Action: Select "Meal Swap" in Grubhub app.</div>
+    </div>
+
+    <div class="card swap" data-keywords="turner place qdoba chick-fil-a jamba brueggers meal swap">
+      <span class="tag tag-swap">Meal Swap (Max 2/day)</span>
+      <div class="card-title">Turner Place</div>
+      <div class="card-detail">Qdoba, Chick-fil-A, Jamba Juice, Bruegger's Bagels.</div>
+      <div class="action-step">👉 Action: Select "Meal Swap" in Grubhub app.</div>
+    </div>
+
+    <div class="card dollars" data-keywords="west end market steak lobster pasta dining dollars flex">
+      <span class="tag tag-dollars">Dining Dollars</span>
+      <div class="card-title">West End Market</div>
+      <div class="card-detail">Premium items, steaks, cooked-to-order meal options.</div>
+      <div class="action-step">👉 Action: Pay with "Dining Dollars" (Saves tax!).</div>
+    </div>
+
+    <div class="card dollars" data-keywords="deets place coffee ice cream bakery cafe flex">
+      <span class="tag tag-dollars">Dining Dollars</span>
+      <div class="card-title">Deet's Place</div>
+      <div class="card-detail">Specialty coffee, pastries, and house-made ice cream.</div>
+      <div class="action-step">👉 Action: Select "Dining Dollars" on app/kiosk.</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Pro-Tip:</strong> If Grubhub or card terminals go down, place a pickup order directly in the Grubhub app using a linked Credit Card as a fallback.
+  </div>
+
+  <script>
+    function filterDining() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let cards = document.getElementsByClassName('card');
+      
+      for (let i = 0; i < cards.length; i++) {
+        let keywords = cards[i].getAttribute('data-keywords');
+        if (keywords.toLowerCase().includes(input)) {
+          cards[i].style.display = "";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
