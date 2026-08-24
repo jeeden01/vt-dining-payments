@@ -3,10 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VT Dining Payments</title>
+    <title>VT Dining Payment & Meal Swap Guide</title>
+    <style>
+        :root {
+            --vt-maroon: #861F41;
+            --vt-orange: #E5751F;
+            --bg-color: #f8f9fa;
+            --text-color: #2b2b2b;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--vt-maroon);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--vt-orange);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: var(--vt-maroon);
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.6rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            color: var(--vt-maroon);
+        }
+
+        .highlight-box {
+            background-color: #fff8f3;
+            border-left: 4px solid var(--vt-orange);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>VT Dining Payment Guide</h1>
-    <p>Welcome to the guide!</p>
+
+    <header>
+        <h1>Virginia Tech Dining Payment Guide</h1>
+        <p>Understanding Meal Swaps, Declining Balance & Payment Options</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>How Meal Exchanges (Meal Swaps) Work</h2>
+            <p>Meal Exchanges allow students on Unlimited dining plans to use a swipe for a combo meal at participating select à la carte venues instead of an all-you-care-to-eat dining center like D2.</p>
+            
+            <div class="highlight-box">
+                <strong>Weekly Meal Exchange Allowances:</strong>
+                <ul>
+                    <li><strong>Unlimited Plan:</strong> 2 Meal Exchanges per week</li>
+                    <li><strong>Unlimited Plus Plan:</strong> 3 Meal Exchanges per week</li>
+                </ul>
+            </div>
+
+            <ul>
+                <li><strong>Combo Eligibility:</strong> Exchanges cover a pre-designated entry, side, and drink at designated locations.</li>
+                <li><strong>Weekly Reset:</strong> Unused meal exchanges reset each week and do not carry over.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>VT Dining Plans Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Access / Type</th>
+                        <th>Meal Swaps</th>
+                        <th>Declining Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Unlimited</strong></td>
+                        <td>Unlimited D2 Swaps</td>
+                        <td>2 / week</td>
+                        <td>$225 / semester</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unlimited Plus</strong></td>
+                        <td>Unlimited D2 Swaps</td>
+                        <td>3 / week</td>
+                        <td>$600 / semester</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maroon / Maroon Plus</strong></td>
+                        <td>Flex Dollars</td>
+                        <td>N/A</td>
+                        <td>$2,090 – $2,646</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Orange / Orange Plus</strong></td>
+                        <td>Off-Campus Plans</td>
+                        <td>N/A</td>
+                        <td>$582 – $1,096</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Payment Methods On Campus</h2>
+            <ul>
+                <li><strong>Meal Swaps:</strong> Cover complete designated combo meals at participating venues.</li>
+                <li><strong>Declining Balance / Flex Dollars:</strong> Funds built into primary meal plans that work like a debit card and receive built-in dining discounts.</li>
+                <li><strong>Dining Dollars:</strong> Supplemental funds for off-campus students with a 5% discount at all dining centers.</li>
+                <li><strong>Hokie Passport General Funds:</strong> Flexible account used for campus printing, laundry, bookstore, and dining (no dining discount applied).</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Virginia Tech Dining Guide &bull; Updated 2026</p>
+    </footer>
+
 </body>
 </html>
