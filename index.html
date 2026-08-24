@@ -9,11 +9,11 @@
     :root {
       --maroon: #861F41;
       --orange: #E57200;
-      --bg: #F8F9FA;
-      --card-bg: #FFFFFF;
-      --text: #212529;
-      --subtext: #6C757D;
-      --border: #DEE2E6;
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --text: #1d1d1f;
+      --subtext: #86868b;
+      --border: #d2d2d7;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -21,11 +21,13 @@
       color: var(--text);
       margin: 0;
       padding: 16px;
-      line-height: 1.5;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     h1 {
       color: var(--maroon);
@@ -37,22 +39,22 @@
       color: var(--subtext);
       font-size: 0.9rem;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
       cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      transition: all 0.2s ease;
     }
     .card:active {
-      transform: scale(0.98);
+      transform: scale(0.99);
     }
     .tag {
       display: inline-block;
@@ -72,7 +74,7 @@
     .card-subtitle {
       font-size: 0.85rem;
       color: var(--subtext);
-      margin-bottom: 12px;
+      margin-bottom: 4px;
     }
     .details {
       display: none;
@@ -92,14 +94,14 @@
       background: #FFF3CD;
       color: #856404;
       padding: 6px 10px;
-      border-radius: 4px;
-      margin-top: 8px;
+      border-radius: 6px;
+      margin-top: 10px;
       font-weight: 500;
     }
     .pro-tips {
       margin-top: 24px;
-      background: #E2E3E5;
-      border-radius: 8px;
+      background: #e8e8ed;
+      border-radius: 12px;
       padding: 16px;
       font-size: 0.85rem;
     }
@@ -121,19 +123,19 @@
     <p>Dining and Spending Interactive Guide</p>
   </header>
 
-  <div class="grid">
+  <div class="container">
 
     <!-- Card 1: Unlimited Plan -->
     <div class="card" onclick="toggleCard(this)">
       <span class="tag">Unlimited Meal Plan</span>
-      <div class="card-title">D2 & Owens Main Food Court</div>
+      <div class="card-title">D2 &amp; Owens Main Food Court</div>
       <div class="card-subtitle">Tap for entry rules, reset counter info, and locations.</div>
       <div class="details">
         <strong>Overview:</strong> Primary plan offering unlimited entry to main dining halls. Includes Dining Dollars. Portal counter auto-resets ("13"). Never runs out.<br><br>
         <strong>Locations Included:</strong>
         <ul>
           <li><strong>D2:</strong> Upper Dietrick (8 international live-action stations)</li>
-          <li><strong>Owens Food Court:</strong> Main Hall seating & lines</li>
+          <li><strong>Owens Food Court:</strong> Main Hall seating &amp; lines</li>
         </ul>
         <div class="pay-note">👉 How to Pay: Swipe Hokie Passport ID at the door. (Credit Card backup ~$13–$18)</div>
       </div>
@@ -149,7 +151,7 @@
         <strong>Venues Included:</strong>
         <ul>
           <li>Smoke (BBQ)</li>
-          <li>Fresh & Feta</li>
+          <li>Fresh &amp; Feta</li>
           <li>Rambutan PHO</li>
           <li>Veloce (Pizza)</li>
         </ul>
@@ -163,7 +165,7 @@
       <div class="card-title">Turner Place (Academic Side)</div>
       <div class="card-subtitle">Tap for participating swap venues and rules.</div>
       <div class="details">
-        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week across campus. 1 Swap = 1 Entree + 1 Side + 1 Drink from the <em>"Meal Exchange"</em> section. <em>(Note: Chick-fil-A & Jamba Juice DO NOT participate in Meal Swaps)</em>.<br><br>
+        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week across campus. 1 Swap = 1 Entree + 1 Side + 1 Drink from the <em>"Meal Exchange"</em> section. <em>(Note: Chick-fil-A &amp; Jamba Juice DO NOT participate in Meal Swaps)</em>.<br><br>
         <strong>Participating Venues:</strong>
         <ul>
           <li>1872 Grill</li>
@@ -178,7 +180,7 @@
     <!-- Card 4: Dining Dollars (DX & Hokie Grill) -->
     <div class="card" onclick="toggleCard(this)">
       <span class="tag">Dining Dollars</span>
-      <div class="card-title">DX (Dietrick Lower) & Hokie Grill</div>
+      <div class="card-title">DX (Dietrick Lower) &amp; Hokie Grill</div>
       <div class="card-subtitle">Tap for late-night burgers, tenders, and pizza options.</div>
       <div class="details">
         <strong>Details:</strong>
@@ -204,7 +206,7 @@
     <!-- Card 6: Dining Dollars (Deet's & Xpress) -->
     <div class="card" onclick="toggleCard(this)">
       <span class="tag">Dining Dollars</span>
-      <div class="card-title">Deet's Place & Xpress Lane Market</div>
+      <div class="card-title">Deet's Place &amp; Xpress Lane Market</div>
       <div class="card-subtitle">Tap for coffee, bakery, ice cream, and market details.</div>
       <div class="details">
         <strong>Details:</strong>
@@ -224,14 +226,14 @@
       <div class="details">
         <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on off-campus delivery directly to dorms).<br><br>
         <strong>Blacksburg Spots:</strong> Taco Bell, PK's, 7-Eleven, etc.<br>
-        <div class="pay-note">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps & Dining Dollars DO NOT work off-campus!)</div>
+        <div class="pay-note">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps &amp; Dining Dollars DO NOT work off-campus!)</div>
       </div>
     </div>
 
     <!-- Card 8: Hokie Passport -->
     <div class="card" onclick="toggleCard(this)">
       <span class="tag">Hokie Passport Account</span>
-      <div class="card-title">Laundry, Printing & Non-Dining</div>
+      <div class="card-title">Laundry, Printing &amp; Non-Dining</div>
       <div class="card-subtitle">Tap for laundry, printing, and bookstore spending rules.</div>
       <div class="details">
         <strong>Details:</strong> Separate debit account that rolls over semester-to-semester. Covers all non-dining campus needs.<br><br>
@@ -239,7 +241,7 @@
         <ul>
           <li>Dorm washers and dryers (or Speed Queen App)</li>
           <li>Newman Library printers</li>
-          <li>Campus vending machines & University Bookstore</li>
+          <li>Campus vending machines &amp; University Bookstore</li>
         </ul>
         <div class="pay-note">👉 How to Pay: Swipe Hokie Passport ID card or tap in app.</div>
       </div>
@@ -252,7 +254,7 @@
     <ul>
       <li><strong>Grubhub Setup:</strong> Go to <em>Account ➔ Campus Dining ➔ Virginia Tech</em>. Log in and link Hokie Passport + Credit Card.</li>
       <li><strong>Finding Meal Swaps:</strong> In the Grubhub app, look specifically for the section header labeled <strong>"Meal Exchange"</strong> under participating venues.</li>
-      <li><strong>Track Dining Dollar Balance:</strong> West End, Chick-fil-A, & Deet's take Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
+      <li><strong>Track Dining Dollar Balance:</strong> West End, Chick-fil-A, &amp; Deet's take Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
     </ul>
   </div>
 
