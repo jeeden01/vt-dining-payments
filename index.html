@@ -133,14 +133,14 @@
 
   <header>
     <h1>VT Freshman Dining Assistant</h1>
-    <p class="sub">First-Year On-Campus Unlimited Plans Guide</p>
+    <p class="sub">First-Year On-Campus Unlimited Plan Guide</p>
   </header>
 
   <input type="text" id="searchInput" class="search-box" placeholder="Search venue, meal exchange, or feature..." onkeyup="filterDining()">
 
   <div class="filter-scroll">
     <button class="filter-btn active" onclick="filterCategory('all', this)">All Options</button>
-    <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited & D2</button>
+    <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited Plan & Halls</button>
     <button class="filter-btn" onclick="filterCategory('exchange', this)">Meal Exchanges</button>
     <button class="filter-btn" onclick="filterCategory('dollars', this)">Declining Balance</button>
     <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport</button>
@@ -148,31 +148,37 @@
 
   <div id="diningList">
 
-    <!-- Freshman Unlimited Plans Overview -->
-    <div class="card unlimited" data-category="unlimited" data-keywords="unlimited plan unlimited plus first year on-campus freshman d2 swipes meal exchange guest meals declining balance">
-      <span class="tag tag-unlimited">First-Year On-Campus Plans</span>
-      <div class="card-title">Unlimited vs. Unlimited Plus</div>
-      <div class="card-summary">Tap for side-by-side comparison of freshman dining plan features.</div>
+    <!-- Freshman Unlimited Plan Overview -->
+    <div class="card unlimited" data-category="unlimited" data-keywords="unlimited plan first year on campus freshman d2 owens swipes meal exchange guest meals declining balance">
+      <span class="tag tag-unlimited">First-Year Unlimited Plan</span>
+      <div class="card-title">Unlimited Meal Plan Breakdown</div>
+      <div class="card-summary">Tap for complete breakdown of plan features and allowances.</div>
       <div class="card-details">
-        <strong>Overview:</strong> All first-year students living on campus are required to choose an Unlimited Dining Plan for complete dining hall access.<br><br>
-        <strong>Plan Features:</strong>
+        <strong>Overview:</strong> First-year on-campus dining plan providing continuous, unrestricted access to primary campus dining halls alongside weekly retail meal swaps and declining balance spending.<br><br>
+        <strong>What's Included:</strong>
         <ul>
-          <li><strong>Unlimited Plan (Default):</strong> Unlimited AYCTE swipes + 2 weekly Meal Exchanges + 5 Guest Meals per semester + built-in Declining Balance account.</li>
-          <li><strong>Unlimited Plus Plan:</strong> Unlimited AYCTE swipes + 3 weekly Meal Exchanges + 5 Guest Meals per semester + expanded Declining Balance account.</li>
+          <li><strong>Unlimited AYCTE Swipes:</strong> Unrestricted daily entry access at <strong>D2</strong> and <strong>Owens Dining Hall</strong>.</li>
+          <li><strong>2 Weekly Meal Exchanges:</strong> Converts 1 swipe into a complete combo meal + drink at select campus retail locations each week.</li>
+          <li><strong>5 Guest Meals:</strong> Semester allowance to host visiting family or friends at AYCTE locations.</li>
+          <li><strong>Declining Balance Account:</strong> Built-in funds for a la carte items, coffee, and snacks across campus.</li>
         </ul>
-        <div class="action-box">👉 Default Selection: First-year on-campus residents are automatically enrolled in the Unlimited Plan unless Unlimited Plus is selected in Hokie SPA.</div>
+        <div class="action-box">👉 Primary Use: Use your unlimited swipes for primary daily meals at D2 and Owens.</div>
       </div>
     </div>
 
-    <!-- D2 Dining Center -->
-    <div class="card unlimited" data-category="unlimited" data-keywords="d2 dietrick upper hall buffet unlimited swipes all you care to eat aycte">
-      <span class="tag tag-unlimited">AYCTE Dining Center</span>
-      <div class="card-title">D2 (Dietrick Hall Upper Level)</div>
-      <div class="card-summary">Tap for D2 Unlimited All-You-Care-To-Eat swipe access details.</div>
+    <!-- D2 & Owens Primary Dining Halls -->
+    <div class="card unlimited" data-category="unlimited" data-keywords="d2 owens dietrick hall food court buffet unlimited swipes all you care to eat aycte">
+      <span class="tag tag-unlimited">Unlimited Swipe Dining Centers</span>
+      <div class="card-title">D2 & Owens Dining Halls</div>
+      <div class="card-summary">Tap for D2 and Owens swipe access and station details.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Virginia Tech's primary All-You-Care-To-Eat venue featuring 8 international live-action food stations.<br><br>
-        <strong>Access:</strong> Both Unlimited Plans grant unrestricted daily entry swipes into D2.<br>
-        <div class="action-box">👉 How to Pay: Tap your Hokie Passport ID card or Grubhub app barcode at the entrance.</div>
+        <strong>Overview:</strong> Virginia Tech's core dining centers accepting unlimited entry swipes for daily meals.<br><br>
+        <strong>Venues Covered:</strong>
+        <ul>
+          <li><strong>D2 (Upper Dietrick Hall):</strong> All-You-Care-To-Eat hall featuring 8 international live-action food stations.</li>
+          <li><strong>Owens Dining Hall:</strong> Major campus dining hub featuring multiple specialty counters, entrees, and customized meal options.</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Tap your Hokie Passport ID card or Grubhub app barcode at entry.</div>
       </div>
     </div>
 
@@ -180,16 +186,16 @@
     <div class="card exchange" data-category="exchange" data-keywords="meal exchange perry place turners hitt hall smokehouse taqueria combo fountain drink combo burger sandwich">
       <span class="tag tag-exchange">Retail Meal Exchanges</span>
       <div class="card-title">Perry Place, Turner Place & Retail Venues</div>
-      <div class="card-summary">Tap to see where and how to use weekly Meal Exchanges.</div>
+      <div class="card-summary">Tap to see where and how to use your 2 weekly Meal Exchanges.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Converts 1 of your weekly swipes into a designated combo meal + fountain drink at select retail food counters across campus.<br><br>
+        <strong>Overview:</strong> Converts 1 of your meal swipes into a designated combo meal + fountain drink at select retail food counters across campus.<br><br>
         <strong>Popular Meal Exchanges:</strong>
         <ul>
           <li><strong>Smoke (Perry Place):</strong> Entree (pulled pork/turkey) + 2 sides + drink.</li>
           <li><strong>Street Taqueria & Origami:</strong> Taco platter or Teppanyaki entree + drink.</li>
           <li><strong>Turner Place & Express Venues:</strong> Designated sandwich, specialty bowl, pizza, or burger combos.</li>
         </ul>
-        <div class="action-box">👉 Weekly Allowance: 2 exchanges/week (Unlimited) or 3 exchanges/week (Unlimited Plus). Resets weekly!</div>
+        <div class="action-box">👉 Weekly Allowance: 2 Meal Exchanges per week. Balance resets every Sunday!</div>
       </div>
     </div>
 
@@ -199,11 +205,11 @@
       <div class="card-title">A La Carte Venues & Coffee Shops</div>
       <div class="card-summary">Tap to see where to spend your built-in Declining Balance Dollars.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Built-in funds included with every Unlimited plan to buy single items, snacks, coffee, or meals at retail centers.<br><br>
+        <strong>Overview:</strong> Built-in funds included with the Unlimited plan to buy single items, snacks, coffee, or meals at retail centers.<br><br>
         <strong>Where to Use:</strong>
         <ul>
           <li><strong>West End Market:</strong> Chop house, pasta bistro, and carved entrees.</li>
-          <li><strong>Owens Food Court & Hokie Grill:</strong> Specialty food stalls and Pizza Hut.</li>
+          <li><strong>Hokie Grill:</strong> Specialty food stalls and Pizza Hut.</li>
           <li><strong>Deet's Place & Xpress Lane:</strong> Specialty coffee, ice cream, and grab-and-go markets.</li>
         </ul>
         <div class="action-box">👉 How to Pay: Order via Grubhub mobile app or swipe ID at register.</div>
@@ -244,7 +250,7 @@
     <div style="font-weight:bold; color:#b78103; margin-bottom:4px;">💡 FRESHMAN DINING PRO-TIPS</div>
     <ul>
       <li><strong>Official Source:</strong> Verified against <strong>dining.vt.edu/plans_overview.html</strong>.</li>
-      <li><strong>Weekly Reset:</strong> Use your 2 or 3 Meal Exchanges each week before they reset on Sunday.</li>
+      <li><strong>Weekly Reset:</strong> Use your 2 Meal Exchanges each week before they reset on Sunday.</li>
       <li><strong>Grubhub Integration:</strong> Link your Hokie Passport under <em>Account ➔ Campus Dining ➔ Virginia Tech</em> to order mobile pickup for Meal Exchanges and Declining Balance Dollars.</li>
       <li><strong>Balance Check:</strong> Track remaining weekly Meal Exchanges and Declining Balance Dollars anytime at <strong>wallet.vt.edu</strong>.</li>
     </ul>
