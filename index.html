@@ -3,113 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VT Dining Assistant</title>
+  <title>VT DINING ASSISTANT</title>
   <link rel="manifest" href="manifest.json">
   <style>
     :root {
       --maroon: #861F41;
+      --maroon-dark: #63122c;
       --orange: #E57200;
-      --bg: #f5f5f7;
+      --bg: #f4f4f6;
       --card-bg: #ffffff;
-      --text: #1d1d1f;
-      --subtext: #86868b;
-      --border: #d2d2d7;
+      --text: #212529;
+      --subtext: #6c757d;
+      --border: #e9ecef;
     }
+    
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       margin: 0;
       padding: 16px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
+
+    /* Maroon Header Bar */
     header {
-      text-align: center;
-      margin-bottom: 24px;
+      background-color: var(--maroon);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-bottom: 4px solid var(--orange);
+      margin-bottom: 16px;
     }
+
     h1 {
-      color: var(--maroon);
-      margin: 0 0 4px 0;
-      font-size: 1.5rem;
-    }
-    header p {
       margin: 0;
-      color: var(--subtext);
-      font-size: 0.9rem;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    .container {
+
+    header p {
+      margin: 4px 0 0 0;
+      color: #f8d7da;
+      font-size: 0.85rem;
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin-bottom: 12px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-input:focus {
+      border-color: var(--maroon);
+    }
+
+    /* Filter Pills */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pill {
+      background: #e9ecef;
+      color: #495057;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill.active {
+      background: var(--maroon);
+      color: #fff;
+    }
+
+    /* Cards List */
+    .card-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      border-radius: 6px;
+      padding: 16px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       cursor: pointer;
-      transition: all 0.2s ease;
+      position: relative;
+      border-left: 6px solid var(--maroon);
     }
-    .card:active {
-      transform: scale(0.99);
+
+    .card.orange-stripe {
+      border-left-color: var(--orange);
     }
+
     .tag {
       display: inline-block;
-      background: var(--maroon);
-      color: #FFF;
+      color: var(--orange);
       font-size: 0.75rem;
-      font-weight: bold;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-bottom: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
     }
+
+    .card.maroon-tag .tag {
+      color: var(--maroon);
+    }
+
     .card-title {
-      font-weight: bold;
-      font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #111;
       margin-bottom: 4px;
     }
+
     .card-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--subtext);
-      margin-bottom: 4px;
     }
+
     .details {
       display: none;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--border);
-      font-size: 0.85rem;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #dee2e6;
+      font-size: 0.9rem;
+      color: #333;
     }
+
     .details.open {
       display: block;
     }
+
     .details ul {
       margin: 8px 0;
       padding-left: 20px;
     }
+
     .pay-note {
-      background: #FFF3CD;
+      background: #fff3cd;
       color: #856404;
-      padding: 6px 10px;
-      border-radius: 6px;
-      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-top: 12px;
       font-weight: 500;
-    }
-    .pro-tips {
-      margin-top: 24px;
-      background: #e8e8ed;
-      border-radius: 12px;
-      padding: 16px;
       font-size: 0.85rem;
     }
+
+    /* Pro-Tips Box */
+    .pro-tips {
+      margin-top: 24px;
+      background: #e9ecef;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.88rem;
+    }
+
     .pro-tips-header {
       font-weight: bold;
       color: var(--maroon);
       margin-bottom: 8px;
     }
+
     .pro-tips ul {
       margin: 0;
       padding-left: 20px;
@@ -119,15 +196,28 @@
 <body>
 
   <header>
-    <h1>VT Dining Assistant</h1>
+    <h1>VT DINING ASSISTANT</h1>
     <p>Dining and Spending Interactive Guide</p>
   </header>
 
-  <div class="container">
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search dining hall, food, or payment type..." onkeyup="filterCards()">
+  </div>
+
+  <div class="filters">
+    <button class="pill active" onclick="filterCategory('all', this)">All Venues</button>
+    <button class="pill" onclick="filterCategory('unlimited', this)">Unlimited Halls</button>
+    <button class="pill" onclick="filterCategory('swaps', this)">Meal Swaps</button>
+    <button class="pill" onclick="filterCategory('dollars', this)">Dining Dollars</button>
+    <button class="pill" onclick="filterCategory('grubhub', this)">Grubhub+</button>
+    <button class="pill" onclick="filterCategory('passport', this)">Hokie Passport</button>
+  </div>
+
+  <div class="card-list" id="cardList">
 
     <!-- Card 1: Unlimited Plan -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Unlimited Meal Plan</span>
+    <div class="card orange-stripe" data-category="unlimited" onclick="toggleCard(this)">
+      <span class="tag">UNLIMITED MEAL PLAN</span>
       <div class="card-title">D2 &amp; Owens Main Food Court</div>
       <div class="card-subtitle">Tap for entry rules, reset counter info, and locations.</div>
       <div class="details">
@@ -142,8 +232,8 @@
     </div>
 
     <!-- Card 2: Meal Swaps at Hitt Hall -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Meal Swaps (Max 2/week)</span>
+    <div class="card maroon-tag" data-category="swaps" onclick="toggleCard(this)">
+      <span class="tag">MEAL SWAPS (MAX 2/WEEK)</span>
       <div class="card-title">Hitt Hall (Perry Place)</div>
       <div class="card-subtitle">Tap to view available stations and swap rules.</div>
       <div class="details">
@@ -160,11 +250,11 @@
     </div>
 
     <!-- Card 3: Meal Swaps at Turner Place -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Meal Swaps (Max 2/week)</span>
+    <div class="card maroon-tag" data-category="swaps" onclick="toggleCard(this)">
+      <span class="tag">MEAL SWAPS (MAX 2/WEEK)</span>
       <div class="card-title">Turner Place (Academic Side)</div>
       <div class="card-subtitle">Tap for participating swap venues and rules.</div>
-      <div class="details">
+      <div class="details open">
         <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week across campus. 1 Swap = 1 Entree + 1 Side + 1 Drink from the <em>"Meal Exchange"</em> section. <em>(Note: Chick-fil-A &amp; Jamba Juice DO NOT participate in Meal Swaps)</em>.<br><br>
         <strong>Participating Venues:</strong>
         <ul>
@@ -178,8 +268,8 @@
     </div>
 
     <!-- Card 4: Dining Dollars (DX & Hokie Grill) -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Dining Dollars</span>
+    <div class="card maroon-tag" data-category="dollars" onclick="toggleCard(this)">
+      <span class="tag">DINING DOLLARS</span>
       <div class="card-title">DX (Dietrick Lower) &amp; Hokie Grill</div>
       <div class="card-subtitle">Tap for late-night burgers, tenders, and pizza options.</div>
       <div class="details">
@@ -193,8 +283,8 @@
     </div>
 
     <!-- Card 5: Dining Dollars (West End) -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Dining Dollars</span>
+    <div class="card maroon-tag" data-category="dollars" onclick="toggleCard(this)">
+      <span class="tag">DINING DOLLARS</span>
       <div class="card-title">West End Market</div>
       <div class="card-subtitle">Tap for steaks, lobster, pasta bistro details, and savings info.</div>
       <div class="details">
@@ -204,8 +294,8 @@
     </div>
 
     <!-- Card 6: Dining Dollars (Deet's & Xpress) -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Dining Dollars</span>
+    <div class="card maroon-tag" data-category="dollars" onclick="toggleCard(this)">
+      <span class="tag">DINING DOLLARS</span>
       <div class="card-title">Deet's Place &amp; Xpress Lane Market</div>
       <div class="card-subtitle">Tap for coffee, bakery, ice cream, and market details.</div>
       <div class="details">
@@ -219,8 +309,8 @@
     </div>
 
     <!-- Card 7: Off-Campus Grubhub -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Grubhub+ Off-Campus</span>
+    <div class="card maroon-tag" data-category="grubhub" onclick="toggleCard(this)">
+      <span class="tag">GRUBHUB+ OFF-CAMPUS</span>
       <div class="card-title">Off-Campus Dorm Delivery</div>
       <div class="card-subtitle">Tap for off-campus food delivery rules and perks.</div>
       <div class="details">
@@ -231,8 +321,8 @@
     </div>
 
     <!-- Card 8: Hokie Passport -->
-    <div class="card" onclick="toggleCard(this)">
-      <span class="tag">Hokie Passport Account</span>
+    <div class="card maroon-tag" data-category="passport" onclick="toggleCard(this)">
+      <span class="tag">HOKIE PASSPORT ACCOUNT</span>
       <div class="card-title">Laundry, Printing &amp; Non-Dining</div>
       <div class="card-subtitle">Tap for laundry, printing, and bookstore spending rules.</div>
       <div class="details">
@@ -259,17 +349,43 @@
   </div>
 
   <script>
+    let activeCategory = 'all';
+
     function toggleCard(cardElement) {
       const details = cardElement.querySelector('.details');
       const isVisible = details.classList.contains('open');
       
-      // Close all cards for accordion behavior
+      // Close all other cards for accordion behavior
       document.querySelectorAll('.details').forEach(d => d.classList.remove('open'));
       
       // Toggle selected card
       if (!isVisible) {
         details.classList.add('open');
       }
+    }
+
+    function filterCategory(category, buttonElement) {
+      activeCategory = category;
+      document.querySelectorAll('.pill').forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
+      filterCards();
+    }
+
+    function filterCards() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const matchesQuery = text.includes(query);
+        const matchesCategory = (activeCategory === 'all' || card.dataset.category === activeCategory);
+
+        if (matchesQuery && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
   </script>
 </body>
