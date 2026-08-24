@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VT Dining & Spending Assistant</title>
+  <title>VT Dining & Spending Assistant (2026–2027)</title>
   <meta name="theme-color" content="#861F41">
   <style>
     :root {
@@ -75,7 +75,8 @@
       border-left: 5px solid var(--maroon);
       cursor: pointer;
     }
-    .card.swipes { border-left-color: var(--orange); }
+    .card.unlimited { border-left-color: var(--maroon); }
+    .card.exchange { border-left-color: var(--orange); }
     .card.dollars { border-left-color: #2E7D32; }
     .card.passport { border-left-color: #7B1FA2; }
     .card.delivery { border-left-color: #1565C0; }
@@ -89,7 +90,8 @@
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-    .tag-swipes { background: #FFF3E0; color: var(--orange); }
+    .tag-unlimited { background: #FCE4EC; color: var(--maroon); }
+    .tag-exchange { background: #FFF3E0; color: var(--orange); }
     .tag-dollars { background: #E8F5E9; color: #2E7D32; }
     .tag-passport { background: #F3E5F5; color: #7B1FA2; }
     .tag-delivery { background: #E3F2FD; color: #1565C0; }
@@ -131,96 +133,92 @@
 
   <header>
     <h1>VT Dining Assistant</h1>
-    <p class="sub">Official Dining Plans & Campus Spending Guide</p>
+    <p class="sub">2026–2027 Official Plans & Campus Spending Guide</p>
   </header>
 
-  <input type="text" id="searchInput" class="search-box" placeholder="Search venue, food, or plan type..." onkeyup="filterDining()">
+  <input type="text" id="searchInput" class="search-box" placeholder="Search plan, venue, or meal exchange..." onkeyup="filterDining()">
 
   <div class="filter-scroll">
-    <button class="filter-btn active" onclick="filterCategory('all', this)">All Venues</button>
-    <button class="filter-btn" onclick="filterCategory('swipes', this)">Meal Swipes / Exchanges</button>
-    <button class="filter-btn" onclick="filterCategory('dollars', this)">Dining Dollars</button>
-    <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport Account</button>
-    <button class="filter-btn" onclick="filterCategory('delivery', this)">Grubhub Delivery</button>
+    <button class="filter-btn active" onclick="filterCategory('all', this)">All Options</button>
+    <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited Plans & D2</button>
+    <button class="filter-btn" onclick="filterCategory('exchange', this)">Meal Exchanges</button>
+    <button class="filter-btn" onclick="filterCategory('dollars', this)">Declining Balance</button>
+    <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport</button>
   </div>
 
   <div id="diningList">
 
-    <!-- D2 & Owens Dining Halls -->
-    <div class="card swipes" data-category="swipes" data-keywords="d2 owens food court dietrick upper main hall buffet meal swipe entry exchange aycte">
-      <span class="tag tag-swipes">Meal Swipes / Swaps</span>
-      <div class="card-title">D2 & Owens Food Court</div>
-      <div class="card-summary">Tap for entry swipe rules and dining venue details.</div>
+    <!-- Unlimited Plans Breakdown -->
+    <div class="card unlimited" data-category="unlimited" data-keywords="unlimited plan unlimited plus first year on-campus freshman d2 swipes meal exchange guest meals">
+      <span class="tag tag-unlimited">2026–2027 Unlimited Dining Plans</span>
+      <div class="card-title">Unlimited & Unlimited Plus Plans</div>
+      <div class="card-summary">Required for 1st-Year On-Campus Students. Tap for details.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Flagship campus dining halls designed around primary Meal Swipes.<br><br>
-        <strong>Venues Included:</strong>
+        <strong>Overview:</strong> First-year residents select an Unlimited Plan, featuring unlimited entry to AYCTE dining halls, weekly meal exchanges, and built-in Declining Balance Dollars.<br><br>
+        <strong>Plan Options:</strong>
         <ul>
-          <li><strong>D2:</strong> Upper Dietrick Hall (8 international live-action stations).</li>
-          <li><strong>Owens Food Court:</strong> Main Hall dining featuring individual specialty stations and meal options.</li>
+          <li><strong>Unlimited ($3,413/sem):</strong> Unlimited AYCTE swipes + $225 Declining Balance + 2 Meal Exchanges/week + 5 Guest Meals.</li>
+          <li><strong>Unlimited Plus ($3,731/sem):</strong> Unlimited AYCTE swipes + $600 Declining Balance + 3 Meal Exchanges/week + 5 Guest Meals.</li>
         </ul>
-        <div class="action-box">👉 How to Pay: Tap Hokie Passport ID card or Grubhub app barcode at entry.</div>
+        <div class="action-box">👉 Default Plan: First-year students living on campus are defaulted to the Unlimited Plan.</div>
       </div>
     </div>
 
-    <!-- Hitt Hall / Perry Place -->
-    <div class="card swipes" data-category="swipes" data-keywords="hitt hall perry place smokehouse bbq street taqueria asian noodle bar sol meal swipe exchange dining dollars">
-      <span class="tag tag-swipes">Meal Swipes & Dining Dollars</span>
-      <div class="card-title">Hitt Hall (Perry Place)</div>
-      <div class="card-summary">Tap for Perry Place meal swap options and dining stations.</div>
+    <!-- D2 Dining Center -->
+    <div class="card unlimited" data-category="unlimited" data-keywords="d2 dietrick upper hall buffet unlimited swipes all you care to eat aycte">
+      <span class="tag tag-unlimited">Unlimited Swipes Center</span>
+      <div class="card-title">D2 (Dietrick Hall Upper Level)</div>
+      <div class="card-summary">Tap for D2 Unlimited All-You-Care-To-Eat swipe rules.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Multi-level dining facility in Hitt Hall featuring 9 dining concepts accepting Meal Swipes/Exchanges as well as Dining Dollars.<br><br>
-        <strong>Featured Stations:</strong> Smokehouse BBQ, Street Taqueria, Asian Noodle Bar, Sol, and Fresh Juice Bar.<br>
-        <div class="action-box">👉 How to Pay: Select "Meal Swap" or "Dining Dollars" in Grubhub App or kiosk.</div>
+        <strong>Overview:</strong> Flagship All-You-Care-To-Eat (AYCTE) venue with 8 live-action international stations.<br><br>
+        <strong>Access:</strong> Unlimited Plan holders enjoy unlimited daily entry swipes.<br>
+        <div class="action-box">👉 How to Pay: Tap Hokie Passport ID card or Grubhub app barcode at the gate for unlimited access.</div>
       </div>
     </div>
 
-    <!-- Turner Place -->
-    <div class="card swipes" data-category="swipes" data-keywords="turner place chick-fil-a qdoba jamba dunkin 1872 fire grill brueggers origami meal swipe dining dollars">
-      <span class="tag tag-swipes">Meal Swipes & Dining Dollars</span>
-      <div class="card-title">Turner Place (Academic Side)</div>
-      <div class="card-summary">Tap for Chick-fil-A, Qdoba, Dunkin', and VT specialty shops.</div>
+    <!-- Meal Exchange Locations -->
+    <div class="card exchange" data-category="exchange" data-keywords="meal exchange perry place turners hitt hall smokehouse taqueria combo fountain drink combo">
+      <span class="tag tag-exchange">Meal Exchange Program</span>
+      <div class="card-title">Retail Meal Exchanges (Perry Place, Turner, etc.)</div>
+      <div class="card-summary">Tap to see where to use your 2–3 weekly Meal Exchange swipes.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Academic-side venue housing national franchise brands and custom VT dining concepts.<br><br>
-        <strong>Payment Options:</strong> Designated meal combos accept Meal Swaps, while full a la carte menus accept Dining Dollars.<br>
-        <div class="action-box">👉 How to Pay: Order via Grubhub App mobile order or campus kiosk.</div>
-      </div>
-    </div>
-
-    <!-- West End Market -->
-    <div class="card dollars" data-category="dollars" data-keywords="west end market steak lobster pasta bistro chop house dining dollars">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">West End Market</div>
-      <div class="card-summary">Tap for JP's Chop House, custom pasta, and bistro options.</div>
-      <div class="card-details">
-        <strong>Overview:</strong> Premium custom-cooked meals including carved steaks, lobster, pasta bistro, and salads.<br><br>
-        <strong>Payment Option:</strong> Paid per item using Dining Dollars included with your plan.<br>
-        <div class="action-box">👉 How to Pay: Order via Grubhub App or swipe ID at register.</div>
-      </div>
-    </div>
-
-    <!-- Hokie Grill & DX Express -->
-    <div class="card dollars" data-category="dollars" data-keywords="hokie grill dx express dietrick late night pizza chicken tenders burgers dining dollars">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">Hokie Grill & DX Express</div>
-      <div class="card-summary">Tap for late-night burgers, tenders, pizza, and BBQ.</div>
-      <div class="card-details">
-        <strong>Overview:</strong>
+        <strong>Overview:</strong> Converts 1 meal swipe into a designated multi-item combo + fountain drink at select retail stations.<br><br>
+        <strong>Popular Exchange Combos:</strong>
         <ul>
-          <li><strong>Hokie Grill:</strong> Located in Owens Annex featuring Pizza Hut and grill items.</li>
-          <li><strong>DX Express:</strong> Lower Dietrick late-night staple for burgers, chicken tenders, and sides.</li>
+          <li><strong>Smoke (Perry Place):</strong> Pulled pork/turkey sandwich + 2 sides + drink.</li>
+          <li><strong>Street Taqueria / Origami:</strong> Taco platter or Teppanyaki entree + drink.</li>
+          <li><strong>Turner Place & Express Venues:</strong> Designated sandwich, soup/salad, or pizza combos.</li>
         </ul>
-        <div class="action-box">👉 How to Pay: Select Dining Dollars in Grubhub App or swipe ID.</div>
+        <div class="action-box">👉 Limit: 2 or 3 exchanges per week (resets weekly depending on your Unlimited Plan tier).</div>
       </div>
     </div>
 
-    <!-- Deet's Place & Xpress Lane -->
-    <div class="card dollars" data-category="dollars" data-keywords="deets place coffee ice cream bakery cafe xpress lane market snack dining dollars">
-      <span class="tag tag-dollars">Dining Dollars</span>
-      <div class="card-title">Deet's Place & Xpress Lane Market</div>
-      <div class="card-summary">Tap for espresso, house-made ice cream, and snacks.</div>
+    <!-- Declining Balance Plans -->
+    <div class="card dollars" data-category="dollars" data-keywords="maroon orange declining balance dollars flex upper year off campus west end owens hokie grill deets">
+      <span class="tag tag-dollars">Declining Balance Plans (Maroon / Orange)</span>
+      <div class="card-title">Maroon & Orange Plans (Upper-Year & Off-Campus)</div>
+      <div class="card-summary">Tap for declining balance options for non-freshmen.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Specialty coffee, ice cream, pastries, and grab-and-go convenience markets located across campus.<br><br>
-        <div class="action-box">👉 How to Pay: Pay with Dining Dollars at the register or mobile app.</div>
+        <strong>Overview:</strong> Dollar-for-dollar declining balance debit plans for upper-year residents and off-campus Hokies.<br><br>
+        <strong>Options:</strong>
+        <ul>
+          <li><strong>Maroon ($2,090/sem):</strong> $2,090 Declining Balance Dollars (on/off campus upper-year).</li>
+          <li><strong>Maroon Plus ($2,646/sem):</strong> $2,646 Declining Balance Dollars.</li>
+          <li><strong>Orange / Orange Plus ($529 / $953):</strong> Supplemental plans with 10%–15% bonus dollars.</li>
+        </ul>
+        <div class="action-box">👉 Usage: Works at ALL campus venues (West End, Owens, Deet's, Hokie Grill, etc.).</div>
+      </div>
+    </div>
+
+    <!-- A La Carte Venues -->
+    <div class="card dollars" data-category="dollars" data-keywords="west end market owens food court hokie grill deets place xpress lane dining dollars">
+      <span class="tag tag-dollars">A La Carte Venues (Declining Balance)</span>
+      <div class="card-title">West End, Owens, Hokie Grill & Deet's</div>
+      <div class="card-summary">Tap for a la carte dining locations and payment rules.</div>
+      <div class="card-details">
+        <strong>Overview:</strong> Individual item pricing across campus dining centers.<br><br>
+        <strong>Accepted Payments:</strong> Declining Balance Dollars (from Unlimited or Maroon plans), Hokie Passport Account, or credit card.<br>
+        <div class="action-box">👉 How to Pay: Order via Grubhub mobile app for pickup or swipe at register.</div>
       </div>
     </div>
 
@@ -228,10 +226,10 @@
     <div class="card delivery" data-category="delivery" data-keywords="grubhub off campus delivery taco bell pks dorm delivery credit card">
       <span class="tag tag-delivery">Grubhub+ Off-Campus</span>
       <div class="card-title">Off-Campus Dorm Delivery</div>
-      <div class="card-summary">Tap for off-campus food delivery rules and payment info.</div>
+      <div class="card-summary">Tap for off-campus Grubhub delivery rules.</div>
       <div class="card-details">
-        <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on participating off-campus orders delivered to campus dorms).<br><br>
-        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit/Debit Card ONLY. (Campus Dining Dollars and Meal Swipes CANNOT be used for off-campus delivery!)</div>
+        <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on participating off-campus restaurant orders delivered to dorms).<br><br>
+        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit/Debit Card ONLY. (Campus Declining Balance Dollars and Swipes CANNOT be used off-campus).</div>
       </div>
     </div>
 
@@ -241,10 +239,10 @@
       <div class="card-title">Laundry, Printing & Campus Stores</div>
       <div class="card-summary">Tap for non-dining campus debit spending (dorm laundry, printing).</div>
       <div class="card-details">
-        <strong>Overview:</strong> A flexible campus debit account separate from dining plans used for non-dining essentials.<br><br>
+        <strong>Overview:</strong> Flexible debit account separate from dining plans used for non-dining essentials.<br><br>
         <strong>Where to Use:</strong>
         <ul>
-          <li>Dorm washers and dryers (via Speed Queen App / ID tap)</li>
+          <li>Dorm washers and dryers (Speed Queen App / ID tap)</li>
           <li>Newman Library printing stations</li>
           <li>Campus vending machines & University Bookstore</li>
         </ul>
@@ -257,10 +255,9 @@
   <div class="pro-tips">
     <div style="font-weight:bold; color:#b78103; margin-bottom:4px;">💡 OFFICIAL VT DINING PRO-TIPS</div>
     <ul>
-      <li><strong>Official Source:</strong> Always reference <strong>dining.vt.edu/plans_overview.html</strong> for official plan tiers, meal swipe allowances, and policy updates.</li>
-      <li><strong>Grubhub Setup:</strong> Link your Hokie Passport under <em>Account ➔ Campus Dining ➔ Virginia Tech</em> to order ahead for pickup on campus.</li>
-      <li><strong>Balance Tracking:</strong> Monitor your remaining meal swipes and Dining Dollars balance anytime at <strong>wallet.vt.edu</strong>.</li>
-      <li><strong>Rollover Rules:</strong> Check official plan guidelines regarding Fall-to-Spring rollovers and end-of-year balances.</li>
+      <li><strong>Official Source:</strong> Verified against <strong>dining.vt.edu/plans_overview.html</strong> for 2026–2027 plan structures.</li>
+      <li><strong>Grubhub Integration:</strong> Link your Hokie Passport under <em>Account ➔ Campus Dining ➔ Virginia Tech</em> to use Meal Exchanges and Declining Balance Dollars for mobile pickup.</li>
+      <li><strong>Track Your Swipes:</strong> Monitor remaining weekly Meal Exchanges and Declining Balance Dollars at <strong>wallet.vt.edu</strong> or Hokie SPA.</li>
     </ul>
   </div>
 
