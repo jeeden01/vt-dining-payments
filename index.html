@@ -146,7 +146,7 @@
     <button class="filter-btn active" onclick="filterCategory('all', this)">All Venues</button>
     <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited Halls</button>
     <button class="filter-btn" onclick="filterCategory('swaps', this)">Meal Swaps</button>
-    <button class="filter-btn" onclick="filterCategory('dollars', this)">Dining Dollars</button>
+    <button class="filter-btn" onclick="filterCategory('dollars', this)">Declining Dining Dollars</button>
     <button class="filter-btn" onclick="filterCategory('delivery', this)">Grubhub+</button>
     <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport</button>
   </div>
@@ -154,12 +154,12 @@
   <div id="diningList">
 
     <!-- D2 & Owens -->
-    <div class="card unlimited" data-category="unlimited" data-keywords="d2 owens dietrick main hall unlimited buffet entry portal reset swipe">
+    <div class="card unlimited" data-category="unlimited" data-keywords="d2 owens dietrick main hall unlimited buffet entry portal reset swipe declining dining dollars">
       <span class="tag tag-unlimited">Unlimited Meal Plan</span>
       <div class="card-title">D2 & Owens Main Food Court</div>
       <div class="card-summary">Tap for entry rules, reset counter info, and locations.</div>
       <div class="card-details">
-        <strong>Overview:</strong> Primary plan offering unlimited entry to main dining halls. Includes Dining Dollars. Portal counter auto-resets ("13"). Never runs out.<br><br>
+        <strong>Overview:</strong> Primary plan offering unlimited entry to main dining halls. Includes Declining Dining Dollars. Portal counter auto-resets ("13"). Never runs out.<br><br>
         <strong>Locations Included:</strong>
         <ul>
           <li><strong>D2:</strong> Upper Dietrick (8 international live-action stations)</li>
@@ -186,27 +186,44 @@
       </div>
     </div>
 
-    <!-- Turner Place -->
-    <div class="card swaps" data-category="swaps" data-keywords="turner place qdoba chick-fil-a jamba brueggers meal swap combo exchange">
+    <!-- Turner Place (Meal Swaps) -->
+    <div class="card swaps" data-category="swaps" data-keywords="turner place qdoba brueggers origami meal swap combo exchange academic side">
       <span class="tag tag-swaps">Meal Swaps (Max 2/week)</span>
-      <div class="card-title">Turner Place (Academic Side)</div>
-      <div class="card-summary">Tap for Qdoba, Chick-fil-A, and Jamba options.</div>
+      <div class="card-title">Turner Place (Meal Swap Stations)</div>
+      <div class="card-summary">Tap for Qdoba, Bruegger's, and Origami swap options.</div>
       <div class="card-details">
-        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week 1 Swap = Entree + Side + Drink.<br><br>
-        <strong>Venues Included:</strong>
+        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week across campus. 1 Swap = Entree + Side + Drink.<br><br>
+        <strong>Venues Accepting Swaps:</strong>
         <ul>
           <li>Qdoba Mexican Grill</li>
-          <li>Chick-fil-A</li>
-          <li>Jamba Juice</li>
           <li>Bruegger’s Bagels</li>
+          <li>Origami</li>
         </ul>
         <div class="action-box">👉 How to Pay: Select "Meal Swap" in Grubhub App or kiosk.</div>
       </div>
     </div>
 
-    <!-- DX & Hokie Grill (Moved to Dining Dollars) -->
-    <div class="card dollars" data-category="dollars" data-keywords="dx dietrick lower late night hokie grill owens annex pizza burgers tenders dining dollars flex discount">
-      <span class="tag tag-dollars">Dining Dollars</span>
+    <!-- Turner Place (Declining Dining Dollars) -->
+    <div class="card dollars" data-category="dollars" data-keywords="turner place chick-fil-a jamba juice dunkin 1872 grill declining dining dollars flex academic side">
+      <span class="tag tag-dollars">Declining Dining Dollars</span>
+      <div class="card-title">Turner Place (Chick-fil-A & Specialty)</div>
+      <div class="card-summary">Tap for Chick-fil-A, Jamba, Dunkin', and 1872 Grill.</div>
+      <div class="card-details">
+        <strong>Details:</strong> These popular Turner Place venues do <em>not</em> accept Meal Swaps. Pay with Declining Dining Dollars to receive the automatic discount.<br><br>
+        <strong>Venues Included:</strong>
+        <ul>
+          <li>Chick-fil-A</li>
+          <li>Jamba Juice</li>
+          <li>Dunkin'</li>
+          <li>1872 Grill</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Select "Declining Dining Dollars" in Grubhub App or swipe ID.</div>
+      </div>
+    </div>
+
+    <!-- DX & Hokie Grill -->
+    <div class="card dollars" data-category="dollars" data-keywords="dx dietrick lower late night hokie grill owens annex pizza burgers tenders declining dining dollars flex discount">
+      <span class="tag tag-dollars">Declining Dining Dollars</span>
       <div class="card-title">DX (Dietrick Lower) & Hokie Grill</div>
       <div class="card-summary">Tap for late-night burgers, tenders, and pizza options.</div>
       <div class="card-details">
@@ -215,24 +232,24 @@
           <li><strong>DX:</strong> Late-night burgers, chicken tenders, and quick options.</li>
           <li><strong>Hokie Grill:</strong> Owens Annex featuring CFA, BBQ, and Pizza options.</li>
         </ul>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID (saves tax!).</div>
+        <div class="action-box">👉 How to Pay: Select "Declining Dining Dollars" in Grubhub App or swipe ID (saves tax!).</div>
       </div>
     </div>
 
     <!-- West End Market -->
-    <div class="card dollars" data-category="dollars" data-keywords="west end market steaks lobster pasta bistro flex dining dollars discount">
-      <span class="tag tag-dollars">Dining Dollars</span>
+    <div class="card dollars" data-category="dollars" data-keywords="west end market steaks lobster pasta bistro flex declining dining dollars discount">
+      <span class="tag tag-dollars">Declining Dining Dollars</span>
       <div class="card-title">West End Market</div>
       <div class="card-summary">Tap for steaks, lobster, pasta bistro details, and savings info.</div>
       <div class="card-details">
         <strong>Details:</strong> Premium custom dishes cooked to order (steaks, lobster, pasta bistro). Included Flex gives an <strong>automatic tax-free discount</strong> at the register.<br><br>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID. (Credit Card backup when Dining Dollars balance runs out)</div>
+        <div class="action-box">👉 How to Pay: Select "Declining Dining Dollars" in Grubhub App or swipe ID. (Credit Card backup when Declining Dining Dollars balance runs out)</div>
       </div>
     </div>
 
     <!-- Deet's & Xpress Lane -->
-    <div class="card dollars" data-category="dollars" data-keywords="deets place coffee ice cream bakery cafe xpress lane market snack dining dollars flex">
-      <span class="tag tag-dollars">Dining Dollars</span>
+    <div class="card dollars" data-category="dollars" data-keywords="deets place coffee ice cream bakery cafe xpress lane market snack declining dining dollars flex">
+      <span class="tag tag-dollars">Declining Dining Dollars</span>
       <div class="card-title">Deet's Place & Xpress Lane Market</div>
       <div class="card-summary">Tap for coffee, bakery, ice cream, and market details.</div>
       <div class="card-details">
@@ -241,7 +258,7 @@
           <li><strong>Deet's Place:</strong> Specialty espresso, house-made ice cream, and fresh bakery items.</li>
           <li><strong>Xpress Lane:</strong> Grab-and-go convenience snacks in Dietrick.</li>
         </ul>
-        <div class="action-box">👉 How to Pay: Select "Dining Dollars" (saves tax!).</div>
+        <div class="action-box">👉 How to Pay: Select "Declining Dining Dollars" (saves tax!).</div>
       </div>
     </div>
 
@@ -253,7 +270,7 @@
       <div class="card-details">
         <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on off-campus delivery directly to dorms).<br><br>
         <strong>Blacksburg Spots:</strong> Taco Bell, PK's, 7-Eleven, etc.<br>
-        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps & Dining Dollars DO NOT work off-campus!)</div>
+        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps & Declining Dining Dollars DO NOT work off-campus!)</div>
       </div>
     </div>
 
@@ -280,7 +297,7 @@
     <div style="font-weight:bold; color:#b78103; margin-bottom:4px;">💡 ESSENTIAL PRO-TIPS</div>
     <ul>
       <li><strong>Grubhub Setup:</strong> Go to <em>Account ➔ Campus Dining ➔ Virginia Tech</em>. Log in and link Hokie Passport + Credit Card.</li>
-      <li><strong>Track Dining Dollar Balance:</strong> West End & Deet's only take Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
+      <li><strong>Track Declining Dining Dollar Balance:</strong> West End & Deet's only take Declining Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
       <li><strong>Cashless Fallback:</strong> If a register terminal goes offline, place your order for pickup through the <strong>Grubhub app</strong>!</li>
     </ul>
   </div>
