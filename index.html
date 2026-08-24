@@ -1,190 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VT Dining Payment & Meal Swap Guide</title>
-    <style>
-        :root {
-            --vt-maroon: #861F41;
-            --vt-orange: #E5751F;
-            --bg-color: #f8f9fa;
-            --text-color: #2b2b2b;
-            --card-bg: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VT Dining & Spending Master App</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#861F41">
+  <style>
+    :root {
+      --maroon: #861F41;
+      --orange: #E5751F;
+      --bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text: #222222;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 12px;
+      padding-bottom: 40px;
+    }
+    header {
+      background-color: var(--maroon);
+      color: white;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border-bottom: 4px solid var(--orange);
+      margin-bottom: 12px;
+    }
+    h1 { margin: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    p.sub { margin: 3px 0 0 0; font-size: 0.8rem; color: #ffc799; }
+    
+    /* Search & Filter Bar */
+    .search-box {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+    .filter-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+      background: #e0e0e0;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      white-space: nowrap;
+      cursor: pointer;
+      color: #444;
+    }
+    .filter-btn.active {
+      background: var(--maroon);
+      color: white;
+    }
 
-        header {
-            background-color: var(--vt-maroon);
-            color: white;
-            padding: 2.5rem 1rem;
-            text-align: center;
-            border-bottom: 5px solid var(--vt-orange);
-        }
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-left: 5px solid var(--maroon);
+      cursor: pointer;
+    }
+    .card.unlimited { border-left-color: var(--orange); }
+    .card.swaps { border-left-color: var(--maroon); }
+    .card.dollars { border-left-color: #2E7D32; }
+    .card.delivery { border-left-color: #1565C0; }
+    .card.passport { border-left-color: #7B1FA2; }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-        }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .tag-unlimited { background: #FFF3E0; color: var(--orange); }
+    .tag-swaps { background: #F8E8EC; color: var(--maroon); }
+    .tag-dollars { background: #E8F5E9; color: #2E7D32; }
+    .tag-delivery { background: #E3F2FD; color: #1565C0; }
+    .tag-passport { background: #F3E5F5; color: #7B1FA2; }
 
-        header p {
-            margin: 0.5rem 0 0 0;
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
+    .card-title { font-size: 0.95rem; font-weight: bold; }
+    .card-summary { font-size: 0.82rem; color: #555; margin-top: 4px; line-height: 1.3; }
+    
+    .card-details {
+      display: none;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #ddd;
+      font-size: 0.82rem;
+      color: #333;
+      line-height: 1.4;
+    }
+    .card.open .card-details { display: block; }
+    
+    .action-box {
+      background: #f0f4f8;
+      padding: 8px;
+      border-radius: 5px;
+      font-weight: bold;
+      color: #111;
+      margin-top: 6px;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        h2 {
-            color: var(--vt-maroon);
-            margin-top: 0;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 0.5rem;
-        }
-
-        ul {
-            padding-left: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.6rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 0.75rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f1f1f1;
-            color: var(--vt-maroon);
-        }
-
-        .highlight-box {
-            background-color: #fff8f3;
-            border-left: 4px solid var(--vt-orange);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-    </style>
+    .pro-tips {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.8rem;
+      margin-top: 14px;
+    }
+    .pro-tips title { font-weight: bold; color: #b78103; margin-bottom: 4px; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Virginia Tech Dining Payment Guide</h1>
-        <p>Understanding Meal Swaps, Declining Balance & Payment Options</p>
-    </header>
+  <header>
+    <h1>VT Dining Assistant</h1>
+    <p class="sub">Dining and Spending Interactive Guide</p>
+  </header>
 
-    <div class="container">
-        
-        <div class="card">
-            <h2>How Meal Exchanges (Meal Swaps) Work</h2>
-            <p>Meal Exchanges allow students on Unlimited dining plans to use a swipe for a combo meal at participating select à la carte venues instead of an all-you-care-to-eat dining center like D2.</p>
-            
-            <div class="highlight-box">
-                <strong>Weekly Meal Exchange Allowances:</strong>
-                <ul>
-                    <li><strong>Unlimited Plan:</strong> 2 Meal Exchanges per week</li>
-                    <li><strong>Unlimited Plus Plan:</strong> 3 Meal Exchanges per week</li>
-                </ul>
-            </div>
+  <input type="text" id="searchInput" class="search-box" placeholder="Search dining hall, food, or payment type..." onkeyup="filterDining()">
 
-            <ul>
-                <li><strong>Combo Eligibility:</strong> Exchanges cover a pre-designated entry, side, and drink at designated locations.</li>
-                <li><strong>Weekly Reset:</strong> Unused meal exchanges reset each week and do not carry over.</li>
-            </ul>
-        </div>
+  <div class="filter-scroll">
+    <button class="filter-btn active" onclick="filterCategory('all', this)">All Venues</button>
+    <button class="filter-btn" onclick="filterCategory('unlimited', this)">Unlimited Halls</button>
+    <button class="filter-btn" onclick="filterCategory('swaps', this)">Meal Swaps</button>
+    <button class="filter-btn" onclick="filterCategory('dollars', this)">Dining Dollars</button>
+    <button class="filter-btn" onclick="filterCategory('delivery', this)">Grubhub+</button>
+    <button class="filter-btn" onclick="filterCategory('passport', this)">Hokie Passport</button>
+  </div>
 
-        <div class="card">
-            <h2>VT Dining Plans Overview</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Plan Name</th>
-                        <th>Access / Type</th>
-                        <th>Meal Swaps</th>
-                        <th>Declining Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Unlimited</strong></td>
-                        <td>Unlimited D2 Swaps</td>
-                        <td>2 / week</td>
-                        <td>$225 / semester</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Unlimited Plus</strong></td>
-                        <td>Unlimited D2 Swaps</td>
-                        <td>3 / week</td>
-                        <td>$600 / semester</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Maroon / Maroon Plus</strong></td>
-                        <td>Flex Dollars</td>
-                        <td>N/A</td>
-                        <td>$2,090 – $2,646</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Orange / Orange Plus</strong></td>
-                        <td>Off-Campus Plans</td>
-                        <td>N/A</td>
-                        <td>$582 – $1,096</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <div id="diningList">
 
-        <div class="card">
-            <h2>Payment Methods On Campus</h2>
-            <ul>
-                <li><strong>Meal Swaps:</strong> Cover complete designated combo meals at participating venues.</li>
-                <li><strong>Declining Balance / Flex Dollars:</strong> Funds built into primary meal plans that work like a debit card and receive built-in dining discounts.</li>
-                <li><strong>Dining Dollars:</strong> Supplemental funds for off-campus students with a 5% discount at all dining centers.</li>
-                <li><strong>Hokie Passport General Funds:</strong> Flexible account used for campus printing, laundry, bookstore, and dining (no dining discount applied).</li>
-            </ul>
-        </div>
-
+    <!-- D2 & Owens -->
+    <div class="card unlimited" data-category="unlimited" data-keywords="d2 owens dietrick main hall unlimited buffet entry portal reset swipe">
+      <span class="tag tag-unlimited">Unlimited Meal Plan</span>
+      <div class="card-title">D2 & Owens Main Food Court</div>
+      <div class="card-summary">Tap for entry rules, reset counter info, and locations.</div>
+      <div class="card-details">
+        <strong>Overview:</strong> Primary plan offering unlimited entry to main dining halls. Includes Dining Dollars. Portal counter auto-resets ("13"). Never runs out.<br><br>
+        <strong>Locations Included:</strong>
+        <ul>
+          <li><strong>D2:</strong> Upper Dietrick (8 international live-action stations)</li>
+          <li><strong>Owens Food Court:</strong> Main Hall hall seating & lines</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Swipe Hokie Passport ID at the door. (Credit Card backup ~$13–$18)</div>
+      </div>
     </div>
 
-    <footer>
-        <p>Virginia Tech Dining Guide &bull; Updated 2026</p>
-    </footer>
+    <!-- Hitt Hall / Perry Place -->
+    <div class="card swaps" data-category="swaps" data-keywords="hitt hall perry place taqueria bbq asian meal swap combo exchange grubhub">
+      <span class="tag tag-swaps">Meal Swaps (Max 2/week)</span>
+      <div class="card-title">Hitt Hall (Perry Place)</div>
+      <div class="card-summary">Tap to view available stations and swap rules.</div>
+      <div class="card-details">
+        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week across campus. 1 Swap = Entree + Side + Drink. Perfect grab-and-go.<br><br>
+        <strong>Venues Included:</strong>
+        <ul>
+          <li>Smokehouse BBQ</li>
+          <li>Street Taqueria</li>
+          <li>Asian Noodle & Rice Bar</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Select "Meal Swap" in Grubhub App or kiosk. (Credit Card backup if daily limit hit)</div>
+      </div>
+    </div>
 
+    <!-- Turner Place -->
+    <div class="card swaps" data-category="swaps" data-keywords="turner place qdoba chick-fil-a jamba brueggers meal swap combo exchange">
+      <span class="tag tag-swaps">Meal Swaps (Max 2/week)</span>
+      <div class="card-title">Turner Place (Academic Side)</div>
+      <div class="card-summary">Tap for Qdoba, Chick-fil-A, and Jamba options.</div>
+      <div class="card-details">
+        <strong>Combo Exchange Rules:</strong> Max 2 Swaps/week 1 Swap = Entree + Side + Drink.<br><br>
+        <strong>Venues Included:</strong>
+        <ul>
+          <li>Qdoba Mexican Grill</li>
+          <li>Chick-fil-A</li>
+          <li>Jamba Juice</li>
+          <li>Bruegger’s Bagels</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Select "Meal Swap" in Grubhub App or kiosk.</div>
+      </div>
+    </div>
+
+    <!-- DX & Hokie Grill (Moved to Dining Dollars) -->
+    <div class="card dollars" data-category="dollars" data-keywords="dx dietrick lower late night hokie grill owens annex pizza burgers tenders dining dollars flex discount">
+      <span class="tag tag-dollars">Dining Dollars</span>
+      <div class="card-title">DX (Dietrick Lower) & Hokie Grill</div>
+      <div class="card-summary">Tap for late-night burgers, tenders, and pizza options.</div>
+      <div class="card-details">
+        <strong>Details:</strong>
+        <ul>
+          <li><strong>DX:</strong> Late-night burgers, chicken tenders, and quick options.</li>
+          <li><strong>Hokie Grill:</strong> Owens Annex featuring CFA, BBQ, and Pizza options.</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID (saves tax!).</div>
+      </div>
+    </div>
+
+    <!-- West End Market -->
+    <div class="card dollars" data-category="dollars" data-keywords="west end market steaks lobster pasta bistro flex dining dollars discount">
+      <span class="tag tag-dollars">Dining Dollars</span>
+      <div class="card-title">West End Market</div>
+      <div class="card-summary">Tap for steaks, lobster, pasta bistro details, and savings info.</div>
+      <div class="card-details">
+        <strong>Details:</strong> Premium custom dishes cooked to order (steaks, lobster, pasta bistro). Included Flex gives an <strong>automatic tax-free discount</strong> at the register.<br><br>
+        <div class="action-box">👉 How to Pay: Select "Dining Dollars" in Grubhub App or swipe ID. (Credit Card backup when Dining Dollars balance runs out)</div>
+      </div>
+    </div>
+
+    <!-- Deet's & Xpress Lane -->
+    <div class="card dollars" data-category="dollars" data-keywords="deets place coffee ice cream bakery cafe xpress lane market snack dining dollars flex">
+      <span class="tag tag-dollars">Dining Dollars</span>
+      <div class="card-title">Deet's Place & Xpress Lane Market</div>
+      <div class="card-summary">Tap for coffee, bakery, ice cream, and market details.</div>
+      <div class="card-details">
+        <strong>Details:</strong>
+        <ul>
+          <li><strong>Deet's Place:</strong> Specialty espresso, house-made ice cream, and fresh bakery items.</li>
+          <li><strong>Xpress Lane:</strong> Grab-and-go convenience snacks in Dietrick.</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Select "Dining Dollars" (saves tax!).</div>
+      </div>
+    </div>
+
+    <!-- Grubhub+ Off-Campus -->
+    <div class="card delivery" data-category="delivery" data-keywords="grubhub off campus delivery taco bell pks 7-eleven dorm delivery credit card free delivery">
+      <span class="tag tag-delivery">Grubhub+ Off-Campus</span>
+      <div class="card-title">Off-Campus Dorm Delivery</div>
+      <div class="card-summary">Tap for off-campus food delivery rules and perks.</div>
+      <div class="card-details">
+        <strong>VT Student Perk: Free Grubhub+</strong> ($0 delivery fees on off-campus delivery directly to dorms).<br><br>
+        <strong>Blacksburg Spots:</strong> Taco Bell, PK's, 7-Eleven, etc.<br>
+        <div class="action-box" style="background:#ffebee; color:#c62828;">👉 How to Pay: Credit Card ONLY in Grubhub App. (Meal Swaps & Dining Dollars DO NOT work off-campus!)</div>
+      </div>
+    </div>
+
+    <!-- Hokie Passport Account -->
+    <div class="card passport" data-category="passport" data-keywords="hokie passport account laundry library printing vending bookstore debit rollover">
+      <span class="tag tag-passport">Hokie Passport Account</span>
+      <div class="card-title">Laundry, Printing & Non-Dining</div>
+      <div class="card-summary">Tap for laundry, printing, and bookstore spending rules.</div>
+      <div class="card-details">
+        <strong>Details:</strong> Separate debit account that rolls over semester-to-semester. Covers all non-dining campus needs.<br><br>
+        <strong>Where to Use:</strong>
+        <ul>
+          <li>Dorm washers and dryers (or Speed Queen App)</li>
+          <li>Newman Library printers</li>
+          <li>Campus vending machines & University Bookstore</li>
+        </ul>
+        <div class="action-box">👉 How to Pay: Swipe Hokie Passport ID card or tap in app.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pro-tips">
+    <div style="font-weight:bold; color:#b78103; margin-bottom:4px;">💡 ESSENTIAL PRO-TIPS</div>
+    <ul>
+      <li><strong>Grubhub Setup:</strong> Go to <em>Account ➔ Campus Dining ➔ Virginia Tech</em>. Log in and link Hokie Passport + Credit Card.</li>
+      <li><strong>Track Dining Dollar Balance:</strong> West End & Deet's only take Dining Dollars or Credit Cards. Check real-time balance at <strong>wallet.vt.edu</strong>.</li>
+      <li><strong>Cashless Fallback:</strong> If a register terminal goes offline, place your order for pickup through the <strong>Grubhub app</strong>!</li>
+    </ul>
+  </div>
+
+  <script>
+    // Toggle expandable cards for both desktop mouse clicks and mobile taps
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Prevent toggle if user is trying to highlight/select text
+        if (window.getSelection().toString().length > 0) return;
+        
+        card.classList.toggle('open');
+      });
+    });
+
+    // Category Filter Buttons
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      document.querySelectorAll('.card').forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Search Bar Filter
+    function filterDining() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        let keywords = card.getAttribute('data-keywords');
+        if (keywords.toLowerCase().includes(input)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
